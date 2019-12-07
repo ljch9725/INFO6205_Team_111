@@ -1,13 +1,13 @@
 # INFO6205_Team_111
 
-This is a long description.
+Northeastern University Information Systems INFO6205 Final Project.
 
 ## Table of Contents
 
 - [Introduction](#introduction)
 - [Background](#background)
 - [Install](#install)
-- [USE API](#USE API)
+- [API](#API)
 - [Result](#Result)
 - [Contributor](#contributor)
 - [License](#license)
@@ -23,9 +23,9 @@ In this case, we are aiming at applying Genetic algorithm to find the best genot
 
 ## Install
 
-This program is developed by [intelliJ IDEA](https://www.jetbrains.com/idea/).
+This program is developed by [intelliJ IDEA](https://www.jetbrains.com/idea/).Please run it with [intelliJ IDEA](https://www.jetbrains.com/idea/).
 
-## USE API
+## API
 
 [Jenetics](http://jenetics.io/)
 
