@@ -18,6 +18,10 @@ public class GetFirstPattern implements Problem<ISeq<Integer>, EnumGene<Integer>
 
     private final ISeq<Integer> _points;
 
+    public ISeq<Integer> get_points() {
+        return _points;
+    }
+
     public GetFirstPattern(ISeq<Integer> points) {
         _points = points;
     }

@@ -5,6 +5,7 @@ import io.jenetics.engine.Codecs;
 import io.jenetics.engine.Engine;
 import io.jenetics.engine.EvolutionStatistics;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -115,12 +116,12 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
      * @param args the name of the starting pattern (defaults to "Blip")
      */
 
-    private static long fitness(final String pattern) {
+    public static long fitness(final String pattern) {
         final Behavior generations = run(0L, pattern);
         return generations.generation;
     }
 
-    private static String RandomString() {
+    public static String RandomString() {
         Random random = new Random();
         int length = random.nextInt(10);
         length = length == 0 ? 2 : length * 2;
@@ -186,8 +187,13 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
         long bestFitness = best.getFitness();
         long bestFitnesWithoutMutation = bestWithoutMutation.getFitness();
         long currentFitness = bestFitness;
-        int totalZeroGeneration = 5;
-        while (totalZeroGeneration > 0 && bestFitness < 1000L) {
+
+        ArrayList<Long> fitnessArray = new ArrayList<Long>();
+        fitnessArray.add(bestFitness);
+        ArrayList<String> patternArray = new ArrayList<String>();
+        String currentPattern = pattern;
+        patternArray.add(currentPattern);
+        while (currentFitness > 0 && bestFitness < 1000L) {
             gfp = GetFirstPattern.of(pattern);
             engine = Engine
                     .builder(gfp)
@@ -211,21 +217,38 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
                 pattern = pattern.substring(0, pattern.length() - 1);
                 bestFitness = best.getFitness();
             }
-            currentFitness = best.getFitness();
-            if (currentFitness == 0) {
-                totalZeroGeneration--;
+
+            String[] currentPatterns = best.getGenotype().toString().substring(1, best.getGenotype().toString().length() - 1).split("\\|");
+            currentPattern = "";
+            for (int i = 0; i < currentPatterns.length; i += 2) {
+                currentPattern += currentPatterns[i] + " " + currentPatterns[i + 1] + " ,";
             }
+            currentPattern = currentPattern.substring(0, currentPattern.length() - 1);
+            patternArray.add(currentPattern);
+            currentFitness = best.getFitness();
+            fitnessArray.add(currentFitness);
             evolution++;
         }
 
+        System.out.println("Data:");
+        for (int i = 0; i < fitnessArray.size() && i < patternArray.size(); i++) {
+            System.out.println("[" + patternArray.get(i) + "] -> " + fitnessArray.get(i));
+        }
 
         System.out.println(statistics);
 
+        int count = 0;
+        for (; count < fitnessArray.size() - 1; count++) {
+            System.out.print(fitnessArray.get(count) + " -> ");
+        }
+        System.out.println(fitnessArray.get(count));
+
+        System.out.println("Result: ");
         System.out.println("the bestWithoutMutation is : " + bestPatternWithoutMutation);
         System.out.println("the bestWithoutMutation fitness is : " + bestFitnesWithoutMutation);
 
         if (bestFitness >= bestFitnesWithoutMutation) {
-            System.out.println("Evolution " + evolution + " generation");
+            System.out.println("Evolution " + evolution + " recursion");
             System.out.println("Found Best Pattern : " + pattern);
             System.out.println("Found Best Fitness : " + bestFitness);
         } else {
