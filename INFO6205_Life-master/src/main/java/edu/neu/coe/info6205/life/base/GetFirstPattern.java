@@ -54,7 +54,7 @@ public class GetFirstPattern implements Problem<ISeq<Integer>, EnumGene<Integer>
         List<Integer> pointlist = new ArrayList<>();
         Random random = new Random();
         int length = result.size() / 2;
-        int randomLength = (random.nextInt(length == 0 ? 1 : length) - 1) * 2; //增加最少一个最多50%的点
+        int randomLength = (random.nextInt(length == 0 ? 1 : length) - 1) * 2;
 
         for (String s : result) {
             String[] ans = s.split(" ");
@@ -63,15 +63,15 @@ public class GetFirstPattern implements Problem<ISeq<Integer>, EnumGene<Integer>
 
             int randomNumber = random.nextInt(100);
             if (randomNumber > 5) {
-                pointlist.add(point1);   // 95% 正常添加
+                pointlist.add(point1);
                 pointlist.add(point2);
             } else if (randomNumber >= 1) {
                 point1 += random.nextInt(Math.abs(point1) / 10 <= 0 ? 1 : Math.abs(point1) / 10);
                 point2 += random.nextInt(Math.abs(point1) / 10 <= 0 ? 1 : Math.abs(point1) / 10);
                 pointlist.add(point1);
                 pointlist.add(point2);
-            } // 1% 丢失
-            if (random.nextInt(100) < 50 && randomLength > 0) {  //额外4% 添加额外点
+            }
+            if (random.nextInt(100) < 50 && randomLength > 0) {
                 int absX = Math.abs(point1);
                 int absY = Math.abs(point2);
                 int maxRange = Math.max(absX, absY);
