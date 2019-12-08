@@ -34,7 +34,7 @@ This program is developed by [intelliJ IDEA](https://www.jetbrains.com/idea/).Pl
 Please see it on report.
 
 
-## Contributing
+## Contributor
 
 [@Jianchao_Li_001054645](https://github.com/ljch9725)
 [@Jingwen_Wang_001052378](https://github.com/Jingwen-Wang-97)
