@@ -36,4 +36,4 @@ Please see it on  [report](https://github.com/ljch9725/INFO6205_Team_111/blob/ma
 
 ## License
 
-[MIT © Richard McRichface.](../LICENSE)
+[MIT](https://github.com/ljch9725/INFO6205_Team_111/blob/master/LICENSE) © Jianchao Li
